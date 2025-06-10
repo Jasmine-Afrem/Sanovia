@@ -1,0 +1,117 @@
+/* --- 1. Main Hero Layout --- */
+.heroContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    padding: 2rem 8%; /* More horizontal padding for a spacious feel */
+    width: 100%;
+    margin: 0 auto;
+    /* This makes the hero fill the vertical screen space below the 80px navbar */
+    min-height: calc(100vh - 80px); 
+    background-color: #fdfdfd; /* A very light, almost white background */
+}
+
+/* --- 2. Text Content & CTA --- */
+.textContainer {
+    flex: 1;
+    max-width: 600px;
+    /* Using a new, more subtle animation */
+    animation: fadeInUp 0.8s 0.2s ease-out forwards;
+    opacity: 0; /* Start hidden for animation */
+}
+
+.textContainer h1 {
+    /* Fluid typography: scales with the viewport but has min/max sizes */
+    font-size: clamp(2.5rem, 5vw, 3.75rem);
+    font-weight: 700;
+    /* A professional, dark color that isn't pure black */
+    color: #2D3748; 
+    line-height: 1.2;
+    margin-bottom: 1.5rem; /* 24px */
+}
+
+.textContainer p {
+    font-size: 1.125rem; /* 18px */
+    /* A softer, more readable grey */
+    color: #718096;
+    line-height: 1.7;
+    margin-bottom: 2.5rem; /* 40px */
+    max-width: 500px; /* Keeps paragraph lines from getting too long */
+}
+
+/* --- 3. The Modernized Button --- */
+.consultButton {
+    /* Using the red from your header for brand consistency! */
+    background-color: #DD2C2F; 
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem; /* 16px 40px */
+    border-radius: 50px; /* A perfect pill shape */
+    font-size: 1.125rem; /* 18px */
+    font-weight: 700;
+    cursor: pointer;
+    /* A subtle shadow using the button's own color for a "glow" effect */
+    box-shadow: 0 4px 14px rgba(221, 44, 47, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.consultButton:hover {
+    transform: translateY(-3px); /* Lifts the button slightly */
+    box-shadow: 0 7px 20px rgba(221, 44, 47, 0.4);
+}
+
+/* --- 4. Image Container --- */
+.imageContainer {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Animate image in after the text for a nice sequence */
+    animation: fadeInUp 0.8s 0.4s ease-out forwards;
+    opacity: 0; /* Start hidden for animation */
+}
+
+.imageContainer img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- 5. Modern Animation --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- 6. Responsive Design --- */
+@media (max-width: 992px) {
+    .heroContainer {
+        flex-direction: column; /* Stack vertically on tablets and mobile */
+        text-align: center; /* Center-align text when stacked */
+        padding: 3rem 5%;
+        min-height: auto; /* Let content define height on mobile */
+    }
+
+    .textContainer {
+        order: 2; /* Text appears below the image */
+        max-width: 100%;
+    }
+
+    .textContainer p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .imageContainer {
+        order: 1; /* Image appears on top */
+        margin-bottom: 2rem;
+        width: 80%; /* Don't let the image be full-width */
+        max-width: 450px;
+    }
+}

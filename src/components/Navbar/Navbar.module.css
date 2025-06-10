@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    width: 100%;
+    height: 80px;
+    background-color: rgba(221, 44, 47, 0.98);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px); 
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logoLink {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+}
+
+.logoImage {
+    height: 250px; 
+    width: auto;
+    margin-left: -10rem;
+}
+
+.logoText {
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-size: 30px;
+    color: #ffffff;
+    margin-left: -5.5rem;
+}
+
+.navLinks ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 2.5rem; 
+}
+
+.navLinks a {
+    font-size: 1rem; 
+    font-weight: 500;
+    color: #ffffff;
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.3s ease, color 0.3s ease;
+    position: relative;
+    padding-bottom: 4px;
+}
+
+.navLinks a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #a00e0e;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+}
+
+.navLinks a:hover,
+.navLinks a.activeLink {
+    opacity: 1;
+    color: #ffffff;
+}
+
+.navLinks a:hover::after,
+.navLinks a.activeLink::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.hamburger {
+    display: none; 
+    cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 1010; 
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: #1F1534;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .navLinks {
+
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(5px);
+        transition: left 0.4s ease-in-out;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navLinks.navOpen {
+        left: 0;
+    }
+
+    .navLinks ul {
+        flex-direction: column; 
+        gap: 2rem;
+    }
+
+    .navLinks a {
+        font-size: 1.5rem; 
+        opacity: 1;
+        font-weight: 700;
+    }
+
+    .hamburger.toggled .bar1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .hamburger.toggled .bar2 {
+        opacity: 0;
+    }
+    .hamburger.toggled .bar3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+}

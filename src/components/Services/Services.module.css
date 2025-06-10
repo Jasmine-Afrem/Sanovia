@@ -1,0 +1,77 @@
+/* --- 1. Main Section Container --- */
+.servicesContainer {
+    padding: 6rem 8%;
+    text-align: center;
+    background-color: #f9f9f9; /* A light grey to separate it from white sections */
+}
+
+/* --- 2. Section Header --- */
+.servicesContainer h2 {
+    font-size: 2.5rem; /* 40px */
+    font-weight: 700;
+    color: #2D3748;
+}
+
+.divider {
+    width: 56px;
+    height: 3px;
+    background-color: #DD2C2F; /* The brand red! */
+    border: none;
+    border-radius: 3px;
+    margin: 1.5rem auto;
+}
+
+.subHeading {
+    max-width: 800px;
+    margin: 0 auto 4rem auto;
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.7;
+    color: #718096; /* Consistent soft grey */
+}
+
+/* --- 3. The Grid of Cards --- */
+.servicesGrid {
+    display: grid;
+    /* This creates a responsive grid that shows 1, 2, or 3 columns based on screen width */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 2.5rem; /* 40px */
+    margin-bottom: 4rem;
+}
+
+/* --- 4. The "Learn More" Button --- */
+/* We use the exact same style as our InfoSection for perfect consistency */
+.learnMoreButton {
+    background-color: transparent;
+    color: #DD2C2F;
+    border: 2px solid #DD2C2F;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.learnMoreButton:hover {
+    background-color: #DD2C2F;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* --- 5. Responsiveness --- */
+@media (max-width: 768px) {
+    .servicesContainer {
+        padding: 4rem 5%;
+    }
+
+    .servicesContainer h2 {
+        font-size: 2rem;
+    }
+
+    .subHeading {
+        font-size: 1rem;
+    }
+    .servicesGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

@@ -1,0 +1,25 @@
+.card {
+    background: #fff;
+    padding: 50px 35px;
+    border-radius: 20px;
+    box-shadow: 10px 40px 50px rgba(229, 233, 246, 0.4);
+    text-align: left;
+}
+
+.iconContainer {
+    font-size: 50px;
+    color: var(--primary-blue, #458FF6);
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 24px;
+    color: var(--text-dark, #000);
+    margin-bottom: 15px;
+}
+
+.description {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--text-light, #7d7987);
+}

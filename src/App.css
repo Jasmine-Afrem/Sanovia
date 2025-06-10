@@ -1,0 +1,4 @@
+.App {
+  max-width: auto; /* O lățime maximă opțională */
+  margin: 0 auto; /* Centrează containerul aplicației */
+}
