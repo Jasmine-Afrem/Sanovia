@@ -1,53 +1,78 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { FiArrowRight } from 'react-icons/fi';
 import styles from './Info.module.css';
 
 interface InfoProps {
     title: string;
     description: string;
-    image: string;
-    imageLeft?: boolean;
+    imageSrc: string;
+    imageAlt: string;
+    isDownloadSection?: boolean;
+    buttonText?: string;
+    onButtonClick?: () => void;
 }
 
-const Info: React.FC<InfoProps> = ({ title, description, image, imageLeft = true }) => {
+const Info: React.FC<InfoProps> = ({
+    title,
+    description,
+    imageSrc,
+    imageAlt,
+    isDownloadSection = false,
+    buttonText = "Learn more",
+    onButtonClick
+}) => {
+    const contentRef = useRef<HTMLDivElement>(null);
+    const imageRef = useRef<HTMLDivElement>(null);
+
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add(styles.visible);
-                    }
-                });
-            },
-            {
-                threshold: 0.2,
-                rootMargin: '50px'
-            }
-        );
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.3,
+        };
 
-        const elements = document.querySelectorAll(`.${styles.infoContent}, .${styles.imageContainer}`);
-        elements.forEach((el) => observer.observe(el));
+        const handleIntersect = (entries: IntersectionObserverEntry[]) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add(styles.visible);
+                }
+            });
+        };
 
-        return () => observer.disconnect();
+        const observer = new IntersectionObserver(handleIntersect, observerOptions);
+
+        if (contentRef.current) {
+            observer.observe(contentRef.current);
+        }
+        if (imageRef.current) {
+            observer.observe(imageRef.current);
+        }
+
+        return () => {
+            observer.disconnect();
+        };
     }, []);
 
     return (
-        <section className={`${styles.infoContainer} ${!imageLeft ? styles.reversed : ''}`}>
-            <div className={styles.infoContent}>
-                <h2 className={styles.title}>
-                    {title}
-                </h2>
-                <p className={styles.description}>
-                    {description}
-                </p>
-                <button className={styles.learnMoreButton}>
-                    Learn more
+        <section className={`${styles.infoContainer} ${isDownloadSection ? styles.download : ''}`}>
+            <div ref={contentRef} className={styles.infoContent}>
+                <h2 className={styles.title}>{title}</h2>
+                <p className={styles.description}>{description}</p>
+                <button 
+                    className={styles.learnMoreButton}
+                    onClick={onButtonClick}
+                    aria-label={buttonText}
+                >
+                    {buttonText}
+                    <FiArrowRight aria-hidden="true" />
                 </button>
             </div>
-            <div className={styles.imageContainer}>
+            <div ref={imageRef} className={styles.imageContainer}>
                 <img 
-                    src={image} 
-                    alt={title} 
+                    src={imageSrc} 
+                    alt={imageAlt} 
                     className={styles.infoImage}
+                    loading="lazy"
                 />
             </div>
         </section>

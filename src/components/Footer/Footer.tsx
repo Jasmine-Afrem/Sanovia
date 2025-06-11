@@ -8,36 +8,54 @@ const footerLinks = {
 };
 
 const Footer: React.FC = () => {
+  const currentYear = new Date().getFullYear();
+  
   return (
     <footer className={styles.footerContainer}>
       <div className={styles.footerGrid}>
         <div className={styles.aboutColumn}>
           <div className={styles.logoContainer}>
-             <div className={styles.logoSymbol}>S</div> 
-             <span className={styles.logoText}>Sanovia</span>
+            <div className={styles.logoSymbol}>S</div>
+            <span className={styles.logoText}>Sanovia</span>
           </div>
-          <p>Sanovia provides progressive, and affordable healthcare, accessible on mobile and online for everyone</p>
-          <p>Sanovia 2025. All rights reserved</p>
+          <p className={styles.description}>
+            Sanovia provides progressive, and affordable healthcare, accessible on mobile and online for everyone. We believe in making healthcare more accessible and convenient for all.
+          </p>
+          <p className={styles.copyright}>
+            © {currentYear} Sanovia. All rights reserved.
+          </p>
         </div>
 
         <div className={styles.linkColumn}>
           <h3>Company</h3>
           <ul>
-            {footerLinks.company.map(link => <li key={link}><a href="#">{link}</a></li>)}
+            {footerLinks.company.map(link => (
+              <li key={link}>
+                <a href="#">{link}</a>
+              </li>
+            ))}
           </ul>
         </div>
         
         <div className={styles.linkColumn}>
           <h3>Region</h3>
           <ul>
-            {footerLinks.region.map(link => <li key={link}><a href="#">{link}</a></li>)}
+            {footerLinks.region.map(link => (
+              <li key={link}>
+                <a href="#">{link}</a>
+              </li>
+            ))}
           </ul>
         </div>
 
         <div className={styles.linkColumn}>
           <h3>Help</h3>
           <ul>
-            {footerLinks.help.map(link => <li key={link}><a href="#">{link}</a></li>)}
+            {footerLinks.help.map(link => (
+              <li key={link}>
+                <a href="#">{link}</a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

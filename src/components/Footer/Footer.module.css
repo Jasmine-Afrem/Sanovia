@@ -1,22 +1,154 @@
 /* --- 1. Main Footer Container --- */
-/* KEY IMPROVEMENT: New Red Gradient Background */
 .footerContainer {
-  /* Fallback for older browsers */
-  background-color: #DD2C2F; 
-  /* The gradient flows from the brand red to a deeper, richer red */
-  background: linear-gradient(160deg, #DD2C2F 0%, #B82023 100%);
-  
-  color: #ffffff;
-  padding: 6rem 8% 2rem;
-  overflow: hidden; 
+    position: relative;
+    background: linear-gradient(160deg, #DD2C2F 0%, #B82023 100%);
+    color: #ffffff;
+    padding: 8rem 8% 4rem;
+    overflow: hidden;
+    box-shadow: inset 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.footerContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
 }
 
 /* --- 2. Main Grid Layout --- */
 .footerGrid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 4rem;
-  padding-bottom: 4rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 4rem;
+    padding-bottom: 4rem;
+    position: relative;
+}
+
+/* --- 3. About & Logo Column --- */
+.aboutColumn {
+    position: relative;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.aboutColumn:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 10px 20px rgba(0, 0, 0, 0.1),
+        0 6px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logoContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.logoSymbol {
+    width: 40px;
+    height: 40px;
+    background: #ffffff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #DD2C2F;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logoText {
+    font-size: 1.75rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* --- 4. Link Columns --- */
+.linkColumn {
+    padding: 2rem;
+    position: relative;
+}
+
+.linkColumn h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #ffffff;
+    position: relative;
+    display: inline-block;
+}
+
+.linkColumn h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 40px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.linkColumn:hover h3::after {
+    width: 60px;
+}
+
+.linkColumn ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.linkColumn a {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.95);
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
+    padding-left: 0;
+}
+
+.linkColumn a::before {
+    content: '→';
+    position: absolute;
+    left: -20px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+.linkColumn a:hover {
+    color: #ffffff;
+    padding-left: 20px;
+    transform: translateX(5px);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.linkColumn a:hover::before {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 /* --- Animation for Columns --- */
@@ -24,86 +156,22 @@
     opacity: 0;
     animation: fadeInUp 0.7s ease-out forwards;
 }
+
 .footerGrid > div:nth-child(1) { animation-delay: 0.1s; }
 .footerGrid > div:nth-child(2) { animation-delay: 0.2s; }
 .footerGrid > div:nth-child(3) { animation-delay: 0.3s; }
 .footerGrid > div:nth-child(4) { animation-delay: 0.4s; }
 
-/* --- 3. About & Logo Column --- */
-.logoLink {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-  text-decoration: none;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.logoLink:hover {
-    transform: scale(1.02);
-    opacity: 0.9;
-}
-
-.logoImage {
-  height: 40px;
-  width: auto;
-}
-
-.logoText {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #ffffff;
-}
-
-.description {
-  line-height: 1.7;
-  font-size: 1rem;
-  max-width: 350px;
-  color: rgba(255, 255, 255, 0.8); /* Slightly increased opacity for better contrast on red */
-}
-
-/* --- 4. Link Columns --- */
-.linkColumn h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  color: #ffffff;
-}
-
-.linkColumn ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.linkColumn a {
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.8);
-  transition: color 0.3s ease, transform 0.3s ease;
-  display: inline-block;
-}
-
-/* KEY IMPROVEMENT: Adjusted Hover Effect for Visibility */
-/* On a red background, a red link is invisible. 
-   We now change the color to pure white, making it 'pop' on hover. */
-.linkColumn a:hover {
-  color: #ffffff; 
-  transform: translateX(5px);
-}
-
-/* --- 5. Sub-Footer (Copyright) --- */
-.subFooter {
-  /* A slightly more opaque border to be visible against the red gradient */
-  border-top: 1px solid rgba(255, 255, 255, 0.15); 
-  padding-top: 2rem;
-  text-align: center;
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.6);
+/* --- 5. Background Elements --- */
+.footerContainer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+    pointer-events: none;
 }
 
 /* --- Animation Keyframes --- */
@@ -120,25 +188,58 @@
 
 /* --- 6. Responsiveness --- */
 @media (max-width: 992px) {
-  .footerGrid {
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-  }
+    .footerGrid {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+    
+    .aboutColumn {
+        grid-column: 1 / -1;
+    }
 }
 
 @media (max-width: 768px) {
-  .footerContainer {
-    padding: 4rem 5% 2rem;
-  }
-  .footerGrid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    text-align: center;
-  }
-  .description {
-    margin: 0 auto;
-  }
-  .logoLink {
-    justify-content: center;
-  }
+    .footerContainer {
+        padding: 4rem 5% 2rem;
+    }
+    
+    .footerGrid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        text-align: center;
+    }
+    
+    .aboutColumn {
+        padding: 1.5rem;
+    }
+    
+    .logoContainer {
+        justify-content: center;
+    }
+    
+    .linkColumn h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .linkColumn a::before {
+        display: none;
+    }
+    
+    .linkColumn a:hover {
+        padding-left: 0;
+    }
+}
+
+.description {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 2rem;
+}
+
+.copyright {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 2rem;
 }

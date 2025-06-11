@@ -14,25 +14,24 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 5%;
+    padding: 0.75rem 5%;
     width: 100%;
-    height: 80px;
-    background: rgba(221, 44, 47, 0.98);
-    box-shadow: 
-        0 4px 30px rgba(0, 0, 0, 0.1),
-        0 2px 10px rgba(0, 0, 0, 0.05);
+    height: 70px;
+    background: rgba(221, 44, 47, 0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
     z-index: 1000;
-    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
-.headerContainer:hover {
-    box-shadow: 
-        0 8px 40px rgba(0, 0, 0, 0.15),
-        0 4px 15px rgba(0, 0, 0, 0.1);
+.headerContainer.scrolled {
+    height: 60px;
+    background: rgba(221, 44, 47, 0.98);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .logoLink {
@@ -40,7 +39,7 @@ body {
     align-items: center;
     gap: 0.75rem;
     text-decoration: none;
-    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .logoLink:hover {
@@ -48,37 +47,31 @@ body {
 }
 
 .logoImage {
-    height: 250px;
+    height: 160px;
     width: auto;
-    margin-left: -8rem;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
-    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.logoLink:hover .logoImage {
-    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
-    transform: scale(1.02);
+    filter: brightness(0) invert(1);
+    transition: all 0.3s ease;
 }
 
 .logoText {
-    font-size: 2rem;
-    font-weight: 400;
+    font-size: 1.75rem;
+    font-weight: 600;
     color: #ffffff;
-    margin-left: -1rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    letter-spacing: -0.5px;
+    margin-left: -3.7rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.logoLink:hover .logoText {
-    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
-    transform: translateX(5px);
+.navLinks {
+    display: flex;
+    align-items: center;
 }
 
 .navLinks ul {
     display: flex;
     align-items: center;
-    list-style: none;
     gap: 2.5rem;
+    list-style: none;
     margin: 0;
     padding: 0;
 }
@@ -88,131 +81,130 @@ body {
     font-weight: 500;
     color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-    position: relative;
     padding: 0.5rem 1rem;
     border-radius: 8px;
-    background: transparent;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
 }
 
 .navLinks a::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    opacity: 0;
-    transform: scale(0.8);
-    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #ffffff;
+    transform: translateX(-50%);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 2px;
 }
 
 .navLinks a:hover::before,
 .navLinks a.activeLink::before {
-    opacity: 1;
-    transform: scale(1);
+    width: calc(100% - 2rem);
 }
 
 .navLinks a:hover,
 .navLinks a.activeLink {
     color: #ffffff;
-    transform: translateY(-2px);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .hamburger {
     display: none;
     cursor: pointer;
-    background: none;
-    border: none;
-    z-index: 1010;
     padding: 0.5rem;
-    border-radius: 8px;
-    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.hamburger:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: scale(1.1);
+    border: none;
+    background: transparent;
+    transition: all 0.3s ease;
 }
 
 .hamburger div {
-    width: 25px;
-    height: 3px;
+    width: 24px;
+    height: 2px;
     background-color: #ffffff;
     margin: 5px 0;
-    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 2px;
 }
 
-.hamburger:hover div {
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+.hamburger.toggled .bar1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.toggled .bar2 {
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+.hamburger.toggled .bar3 {
+    transform: rotate(45deg) translate(-5px, -6px);
 }
 
 @media (max-width: 768px) {
     .headerContainer {
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 1.5rem;
     }
 
     .logoImage {
         height: 40px;
-        margin-left: 0;
     }
 
     .logoText {
-        font-size: 20px;
-        margin-left: 0;
+        font-size: 1.5rem;
     }
 
     .navLinks {
         position: fixed;
         top: 0;
-        left: -100%;
+        right: -100%;
         width: 100%;
         height: 100vh;
         background: rgba(221, 44, 47, 0.98);
         backdrop-filter: blur(10px);
-        transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        -webkit-backdrop-filter: blur(10px);
         display: flex;
         justify-content: center;
         align-items: center;
-        box-shadow: 
-            20px 0 50px rgba(0, 0, 0, 0.2),
-            10px 0 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .navLinks.navOpen {
-        left: 0;
+        right: 0;
     }
 
     .navLinks ul {
         flex-direction: column;
         gap: 2rem;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .navLinks.navOpen ul {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.3s;
     }
 
     .navLinks a {
-        font-size: 1.5rem;
-        opacity: 1;
-        font-weight: 700;
+        font-size: 1.25rem;
         padding: 1rem 2rem;
     }
 
     .hamburger {
         display: block;
+        z-index: 2000;
+    }
+}
+
+@media (min-width: 1024px) {
+    .headerContainer {
+        padding: 0.75rem 10%;
     }
 
-    .hamburger.toggled .bar1 {
-        transform: rotate(-45deg) translate(-5px, 6px);
-    }
-
-    .hamburger.toggled .bar2 {
-        opacity: 0;
-    }
-
-    .hamburger.toggled .bar3 {
-        transform: rotate(45deg) translate(-5px, -6px);
+    .navLinks a {
+        font-size: 1.1rem;
     }
 }

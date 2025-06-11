@@ -1,75 +1,88 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from './Services.module.css';
-import { FaSearch, FaFlask, FaFileAlt, FaAmbulance, FaCapsules, FaMicroscope } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeartbeat, faUserMd, faNotesMedical, faAmbulance, faHospital, faPrescriptionBottleAlt, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
-const servicesData = [
-    { icon: <FaSearch/>, title: "Search a doctor", description: "Choose your doctor from thousands of specialists"},
-    { icon: <FaCapsules/>, title: "Online pharmacy", description: "Buy your medicine"},
-    { icon: <FaFileAlt/>, title: "Consultation", description: "Free consultations with our trusted doctors"},
-    { icon: <FaFlask/>, title: "Details info", description: "Lorem ipsum"},
-    { icon: <FaAmbulance/>, title: "Emergency care", description: "24/7 urgent care"},
-    { icon: <FaMicroscope/>, title: "Tracking", description: "Track and save your medical history"}
-];
+interface ServiceCardProps {
+    icon: any;
+    title: string;
+    description: string;
+}
 
-const Services: React.FC = () => {
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        const ratio = entry.intersectionRatio;
-                        const element = entry.target as HTMLElement;
-                        
-                        if (ratio >= 0.1) {
-                            element.classList.add(styles.visible);
-                        }
-                    }
-                });
-            },
-            {
-                threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
-                rootMargin: '50px 0px -10% 0px'
-            }
-        );
-
-        const cards = document.querySelectorAll(`.${styles.serviceCard}`);
-        cards.forEach((card, index) => {
-            (card as HTMLElement).style.transitionDelay = `${index * 150}ms`;
-            observer.observe(card);
-        });
-
-        return () => {
-            cards.forEach(card => {
-                observer.unobserve(card);
-                (card as HTMLElement).style.transitionDelay = '';
-            });
-            observer.disconnect();
-        };
-    }, []);
+const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description }) => {
+    const cardRef = useScrollAnimation({
+        threshold: 0.1,
+        rootMargin: '0px 0px -15% 0px'
+    });
 
     return (
-        <section className={styles.servicesContainer}>
-            <h2>Our services</h2>
-            <hr className={styles.divider} />
-            <p className={styles.subHeading}>
-                We provide to you the best choiches for you. Adjust it to your health needs and make sure you undergo treatment
-                with our highly qualified doctors you can consult with us which type of service is suitable for your health
-            </p>
-            <div className={styles.servicesGrid}>
-                {servicesData.map((service, index) => (
-                    <div 
-                        key={index} 
-                        className={styles.serviceCard}
-                    >
-                        <div className={styles.serviceIcon}>{service.icon}</div>
-                        <h3 className={styles.serviceTitle}>{service.title}</h3>
-                        <p className={styles.serviceDescription}>{service.description}</p>
-                    </div>
-                ))}
+        <div className={`${styles.serviceCard}`} ref={cardRef}>
+            <div className={styles.iconWrapper}>
+                <FontAwesomeIcon icon={icon} />
             </div>
-            <button className={styles.learnMoreButton}>
-                Learn more
-            </button>
+            <h3>{title}</h3>
+            <p>{description}</p>
+            <a href="#" className={styles.learnMore}>
+                Learn More
+                <FontAwesomeIcon icon={faArrowRight} />
+            </a>
+        </div>
+    );
+};
+
+const Services: React.FC = () => {
+    const services = [
+        {
+            icon: faHeartbeat,
+            title: "Emergency Care",
+            description: "24/7 emergency medical care services with state-of-the-art facilities and experienced healthcare professionals."
+        },
+        {
+            icon: faUserMd,
+            title: "Qualified Doctors",
+            description: "Access to highly qualified and experienced doctors across various medical specialties."
+        },
+        {
+            icon: faNotesMedical,
+            title: "Medical Treatment",
+            description: "Comprehensive medical treatment plans tailored to your specific health needs and conditions."
+        },
+        {
+            icon: faAmbulance,
+            title: "Fast Ambulance",
+            description: "Rapid response ambulance service equipped with modern medical equipment and trained paramedics."
+        },
+        {
+            icon: faHospital,
+            title: "Modern Facilities",
+            description: "State-of-the-art medical facilities and equipment for accurate diagnosis and effective treatment."
+        },
+        {
+            icon: faPrescriptionBottleAlt,
+            title: "Pharmacy Service",
+            description: "On-site pharmacy service providing prescribed medications and healthcare products."
+        }
+    ];
+
+    return (
+        <section className={styles.servicesSection}>
+            <div className={styles.container}>
+                <div className={styles.sectionHeader}>
+                    <h2>Our Services</h2>
+                    <p>We provide the best quality healthcare services for our patients</p>
+                </div>
+                <div className={styles.servicesGrid}>
+                    {services.map((service, index) => (
+                        <ServiceCard
+                            key={index}
+                            icon={service.icon}
+                            title={service.title}
+                            description={service.description}
+                        />
+                    ))}
+                </div>
+            </div>
         </section>
     );
 };

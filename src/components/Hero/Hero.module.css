@@ -1,18 +1,20 @@
 /* --- 1. Main Hero Layout --- */
 .heroContainer {
-    min-height: calc(85vh - 80px);
+    min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 4rem 5%;
+    padding: 0 5%;
     position: relative;
     overflow: hidden;
     opacity: 0;
     animation: fadeIn 0.8s ease-out forwards;
+    margin-top: -80px; /* Offset for navbar height */
+    padding-top: 80px; /* Add padding to account for navbar */
 }
 
 .heroContent {
     flex: 0 1 45%;
-    max-width: 450px;
+    max-width: 600px;
     opacity: 0;
     transform: translateX(-30px);
     animation: slideIn 1s ease-out forwards;
@@ -20,37 +22,30 @@
 }
 
 .heroTitle {
-    font-size: 2.5rem;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
     line-height: 1.1;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     color: var(--text-color);
-    letter-spacing: -0.02em;
 }
 
 .heroTitle span {
     color: var(--primary-red);
     display: block;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
 }
 
 .heroDescription {
-    font-size: 0.95rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
     color: var(--text-light);
-    margin-bottom: 1.5rem;
-    line-height: 1.5;
-    max-width: 400px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: slideUp 0.8s ease-out 0.3s forwards;
+    max-width: 540px;
 }
 
 .heroButtons {
     display: flex;
-    gap: 1rem;
-    margin-top: 1.25rem;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: slideUp 0.8s ease-out 0.5s forwards;
+    gap: 1.5rem;
+    margin-top: 2rem;
 }
 
 .learnMoreButton {
@@ -95,14 +90,17 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    height: 500px;
     opacity: 0;
+    top: 6;
     transform: translateX(30px);
     animation: slideIn 1s ease-out 0.2s forwards;
 }
 
 .heroImage {
     max-width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: contain;
     border-radius: 30px;
     filter: drop-shadow(0 10px 25px rgba(221, 44, 47, 0.2));
     transform: translateY(0);
@@ -189,31 +187,21 @@
     .heroContainer {
         flex-direction: column;
         text-align: center;
-        padding: 2rem 5%;
-        gap: 3rem;
+        padding: 0 5%;
+        padding-top: 100px; /* Increased padding-top for mobile */
+        justify-content: center;
+        min-height: 100vh;
     }
 
     .heroContent {
         flex: 0 1 auto;
         max-width: 600px;
-        margin: 0 auto 1rem;
+        margin: 0 auto;
         padding-right: 0;
     }
 
-    .heroTitle {
-        font-size: 2rem;
-    }
-
-    .heroTitle span {
-        display: inline;
-        margin-right: 0.5rem;
-    }
-
     .heroDescription {
-        font-size: 0.9rem;
-        margin: 0 auto 1rem;
-        max-width: 500px;
-        line-height: 1.6;
+        margin: 0 auto;
     }
 
     .heroButtons {
@@ -221,29 +209,28 @@
     }
 
     .heroImageContainer {
-        width: 100%;
+        width: 90%;
         max-width: 500px;
-        margin: 0 auto;
-    }
-
-    .backgroundShape {
-        display: none;
+        height: 300px;
+        margin: 2rem auto;
     }
 }
 
 @media (max-width: 768px) {
+    .heroContainer {
+        padding: 80px 1.5rem 2rem;
+    }
+
     .heroContent {
-        max-width: 100%;
         padding: 0 1rem;
     }
 
     .heroTitle {
-        font-size: 1.75rem;
+        font-size: 2.5rem;
     }
 
     .heroDescription {
-        font-size: 0.875rem;
-        max-width: 100%;
-        padding: 0 0.5rem;
+        font-size: 1rem;
+        line-height: 1.6;
     }
 }

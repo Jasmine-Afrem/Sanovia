@@ -1,36 +1,27 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
-import Hero from './components/Hero/Hero';
-import Services from './components/Services/Services';
-import Info from './components/Info/Info';
-import Footer from './components/Footer/Footer';
-import './styles/effects.css';
-
-import healthImage from './assets/healthImage.jpeg';
-import downloadAppImg from './assets/downloadAppImg.png';
+import Home from './pages/Home/Home';
+import FindDoctor from './pages/FindDoctor/FindDoctor';
+import MobileApp from './pages/MobileApp/MobileApp';
+import About from './pages/About/About';
+import './App.css';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <Navbar />
-      <main>
-        <Hero />
-        <Services />
-        <Info
-          title="Leading healthcare providers"
-          description="Sanovia provides progressive, and affordable healthcare, accessible on mobile and online for everyone. To us, it's not just work. We take pride in the solutions we deliver."
-          image={healthImage}
-          imageLeft={true}
-        />
-        <Info
-          title="Download our mobile app"
-          description="Get the best healthcare experience right in your pocket! Our dedicated patient engagement app allows you to book appointments, track your health records, receive reminders, and connect with doctors - all in one place. Download now and take control of your healthcare journey."
-          image={downloadAppImg}
-          imageLeft={false}
-        />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <div className="app">
+        <Navbar />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/find-doctor" element={<FindDoctor />} />
+            <Route path="/mobile-app" element={<MobileApp />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </main>
+      </div>
+    </Router>
   );
 };
 
