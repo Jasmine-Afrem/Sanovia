@@ -1,126 +1,199 @@
 /* --- 1. Main Section Container --- */
 .servicesContainer {
-    padding: 5rem 10%;
+    padding: 6rem 5%;
     text-align: center;
-    background: #ffffff;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(249, 249, 249, 0.9) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background Shapes */
+.servicesContainer::before,
+.servicesContainer::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(45deg, rgba(221, 44, 47, 0.05), rgba(255, 59, 63, 0.02));
+    z-index: 0;
+}
+
+.servicesContainer::before {
+    width: 500px;
+    height: 500px;
+    top: -100px;
+    right: -100px;
+    animation: pulse 8s ease-in-out infinite;
+}
+
+.servicesContainer::after {
+    width: 300px;
+    height: 300px;
+    bottom: -50px;
+    left: -50px;
+    animation: pulse 8s ease-in-out infinite reverse;
 }
 
 /* --- 2. Section Header --- */
 .servicesContainer h2 {
     font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 1rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
 }
 
 .divider {
-    width: 60px;
-    height: 3px;
-    background: #DD2C2F;
+    width: 56px;
+    height: 2px;
+    background: var(--primary-red);
     margin: 1rem auto;
     border: none;
+    position: relative;
+    z-index: 1;
 }
 
 .subHeading {
     max-width: 800px;
-    margin: 0 auto 3rem;
-    color: #666;
-    line-height: 1.6;
+    margin: 2rem auto 4rem;
+    color: var(--text-medium);
+    line-height: 1.8;
+    font-size: 1.1rem;
+    position: relative;
+    z-index: 1;
 }
 
 /* Grid Layout */
 .servicesGrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin: 3rem 0;
+    gap: 2.5rem;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 1;
 }
 
 /* Service Cards */
 .serviceCard {
-    background: #ffffff;
-    padding: 2rem;
-    border-radius: 12px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: var(--white);
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 1.5rem;
+    box-shadow: 
+        0 10px 30px var(--shadow-soft),
+        0 5px 15px var(--shadow-medium);
     opacity: 0;
-    transform: translateY(50px);
-    transition: 
-        opacity 1s cubic-bezier(0.5, 0, 0, 1),
-        transform 1s cubic-bezier(0.5, 0, 0, 1);
-    will-change: opacity, transform;
+    transform: translateY(30px);
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
-.serviceCard.visible {
+.serviceCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(221, 44, 47, 0.05) 0%, rgba(255, 59, 63, 0.02) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.serviceCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 
+        0 20px 40px var(--shadow-medium),
+        0 10px 20px var(--shadow-colored);
+}
+
+.serviceCard:hover::before {
+    opacity: 1;
+}
+
+.serviceIcon {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.serviceCard:hover .serviceIcon {
+    transform: scale(1.1);
+}
+
+.serviceTitle {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.serviceDescription {
+    color: var(--text-medium);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-.serviceCard:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-}
-
-.serviceIcon {
-    font-size: 2.5rem;
-    color: #DD2C2F;
-    margin-bottom: 1rem;
-}
-
-.serviceTitle {
-    font-size: 1.25rem;
-    color: #333;
-    margin-bottom: 0.5rem;
-}
-
-.serviceDescription {
-    color: #666;
-    line-height: 1.5;
-}
-
 /* --- 4. The "Learn More" Button --- */
 .learnMoreButton {
-    background: #DD2C2F;
-    color: white;
+    background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-red-dark) 100%);
+    color: var(--white);
     border: none;
     padding: 1rem 2.5rem;
-    font-size: 1rem;
-    font-weight: 500;
-    border-radius: 8px;
+    border-radius: 50px;
+    font-size: 1.125rem;
+    font-weight: 600;
     cursor: pointer;
-    margin-top: 2rem;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px var(--shadow-colored);
+    position: relative;
+    overflow: hidden;
+    margin-top: 4rem;
+    z-index: 1;
+}
+
+.learnMoreButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
 }
 
 .learnMoreButton:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(221, 44, 47, 0.2);
+    box-shadow: 0 6px 20px rgba(221, 44, 47, 0.4);
 }
 
-/* Fade In Animation */
-.fadeIn {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.8s ease forwards;
-    animation-play-state: paused;
-    will-change: opacity, transform;
+.learnMoreButton:hover::before {
+    transform: translateX(100%);
 }
 
-.fadeIn.visible {
-    animation-play-state: running;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.5;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    50% {
+        transform: scale(1.1);
+        opacity: 0.7;
     }
 }
 
@@ -128,21 +201,48 @@
 @media (max-width: 1024px) {
     .servicesGrid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    .servicesContainer::before,
+    .servicesContainer::after {
+        display: none;
     }
 }
 
 @media (max-width: 768px) {
     .servicesContainer {
-        padding: 3rem 5%;
+        padding: 4rem 5%;
     }
 
-    .servicesContainer h2 {
+    h2 {
         font-size: 2rem;
     }
 
+    .subHeading {
+        font-size: 1rem;
+        padding: 0 1rem;
+        margin-bottom: 3rem;
+    }
+}
+
+@media (max-width: 640px) {
     .servicesGrid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 2rem;
+    }
+
+    .serviceCard {
+        padding: 2rem 1.5rem;
+    }
+
+    .serviceIcon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .serviceTitle {
+        font-size: 1.25rem;
     }
 }
 

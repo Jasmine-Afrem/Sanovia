@@ -1,5 +1,5 @@
 .infoContainer {
-    padding: 6rem 10%;
+    padding: 6rem 5%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -9,12 +9,67 @@
     overflow: hidden;
 }
 
+/* Reversed layout */
+.reversed {
+    flex-direction: row-reverse;
+}
+
+.reversed .infoContent {
+    transform: translateX(30px);
+}
+
+.reversed .imageContainer {
+    transform: translateX(-30px);
+}
+
+.reversed .title::after {
+    left: 0;
+    transform-origin: right;
+}
+
+.reversed.infoContainer::before {
+    left: -100px;
+    right: auto;
+}
+
+.reversed.infoContainer::after {
+    right: -50px;
+    left: auto;
+}
+
+.infoContainer::before,
+.infoContainer::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(45deg, rgba(221, 44, 47, 0.05), rgba(255, 59, 63, 0.02));
+    z-index: 0;
+}
+
+.infoContainer::before {
+    width: 500px;
+    height: 500px;
+    top: -100px;
+    right: -100px;
+    animation: pulse 8s ease-in-out infinite;
+}
+
+.infoContainer::after {
+    width: 300px;
+    height: 300px;
+    bottom: -50px;
+    left: -50px;
+    animation: pulse 8s ease-in-out infinite reverse;
+}
+
 .infoContent {
     flex: 1;
     max-width: 600px;
     opacity: 0;
     transform: translateX(-30px);
-    transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+    transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    z-index: 1;
 }
 
 .infoContent.visible {
@@ -23,10 +78,11 @@
 }
 
 .title {
-    font-size: 3.5rem;
-    color: #333;
-    margin-bottom: 1.5rem;
+    font-size: 3rem;
+    color: var(--text-color);
+    margin-bottom: 2rem;
     line-height: 1.2;
+    font-weight: 700;
     position: relative;
 }
 
@@ -37,10 +93,10 @@
     left: 0;
     width: 100px;
     height: 4px;
-    background: #DD2C2F;
+    background: var(--primary-red);
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.8s cubic-bezier(0.5, 0, 0, 1) 0.3s;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
 }
 
 .infoContent.visible .title::after {
@@ -49,12 +105,12 @@
 
 .description {
     font-size: 1.1rem;
-    color: #666;
+    color: var(--text-medium);
     line-height: 1.8;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     opacity: 0;
     transform: translateY(20px);
-    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1) 0.4s;
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s;
 }
 
 .infoContent.visible .description {
@@ -65,23 +121,36 @@
 .learnMoreButton {
     display: inline-block;
     padding: 1rem 2.5rem;
-    font-size: 1.1rem;
-    color: #DD2C2F;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--primary-red);
     background: transparent;
-    border: 2px solid #DD2C2F;
+    border: 2px solid var(--primary-red);
     border-radius: 50px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     position: relative;
     overflow: hidden;
     opacity: 0;
     transform: translateY(20px);
     transition: 
-        opacity 0.8s cubic-bezier(0.5, 0, 0, 1) 0.6s,
-        transform 0.8s cubic-bezier(0.5, 0, 0, 1) 0.6s,
+        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.6s,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.6s,
         color 0.3s ease,
         background-color 0.3s ease,
         box-shadow 0.3s ease;
+}
+
+.learnMoreButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(221, 44, 47, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
 }
 
 .infoContent.visible .learnMoreButton {
@@ -90,10 +159,14 @@
 }
 
 .learnMoreButton:hover {
-    color: white;
-    background: #DD2C2F;
+    color: var(--white);
+    background: var(--primary-red);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(221, 44, 47, 0.3);
+    box-shadow: 0 5px 15px var(--shadow-colored);
+}
+
+.learnMoreButton:hover::before {
+    transform: translateX(100%);
 }
 
 .imageContainer {
@@ -101,7 +174,8 @@
     position: relative;
     opacity: 0;
     transform: translateX(30px);
-    transition: all 1s cubic-bezier(0.5, 0, 0, 1) 0.2s;
+    transition: all 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+    z-index: 1;
 }
 
 .imageContainer.visible {
@@ -113,24 +187,66 @@
     width: 100%;
     max-width: 600px;
     height: auto;
-    border-radius: 20px;
+    border-radius: 30px;
     box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.1),
-        0 10px 20px rgba(0, 0, 0, 0.05);
+        0 20px 40px var(--shadow-medium),
+        0 10px 20px var(--shadow-colored);
     transform: perspective(1000px) rotateY(0deg);
-    transition: transform 0.6s cubic-bezier(0.5, 0, 0, 1);
+    transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .imageContainer:hover .infoImage {
     transform: perspective(1000px) rotateY(-5deg) translateZ(50px);
+    box-shadow: 
+        0 30px 60px var(--shadow-medium),
+        0 15px 30px var(--shadow-colored);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.7;
+    }
 }
 
 @media (max-width: 1024px) {
-    .infoContainer {
+    .infoContainer,
+    .reversed {
         padding: 4rem 5%;
         flex-direction: column;
         text-align: center;
         gap: 3rem;
+    }
+
+    .infoContent,
+    .reversed .infoContent {
+        transform: translateX(0);
+    }
+
+    .imageContainer,
+    .reversed .imageContainer {
+        transform: translateX(0);
+    }
+
+    .title::after,
+    .reversed .title::after {
+        left: 50%;
+        transform: translateX(-50%) scaleX(0);
+        transform-origin: center;
+    }
+
+    .infoContent.visible .title::after,
+    .reversed .infoContent.visible .title::after {
+        transform: translateX(-50%) scaleX(1);
+    }
+
+    .infoContainer::before,
+    .infoContainer::after {
+        display: none;
     }
 
     .infoContent {
@@ -139,15 +255,6 @@
 
     .title {
         font-size: 2.5rem;
-    }
-
-    .title::after {
-        left: 50%;
-        transform: translateX(-50%) scaleX(0);
-    }
-
-    .infoContent.visible .title::after {
-        transform: translateX(-50%) scaleX(1);
     }
 
     .imageContainer {
@@ -168,5 +275,10 @@
 
     .description {
         font-size: 1rem;
+        padding: 0 1rem;
+    }
+
+    .infoImage {
+        border-radius: 20px;
     }
 } 

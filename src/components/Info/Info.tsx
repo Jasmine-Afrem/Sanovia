@@ -1,8 +1,14 @@
 import React, { useEffect } from 'react';
 import styles from './Info.module.css';
-import healthImage from '../../assets/healthimage.jpeg';
 
-const Info: React.FC = () => {
+interface InfoProps {
+    title: string;
+    description: string;
+    image: string;
+    imageLeft?: boolean;
+}
+
+const Info: React.FC<InfoProps> = ({ title, description, image, imageLeft = true }) => {
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
@@ -25,14 +31,13 @@ const Info: React.FC = () => {
     }, []);
 
     return (
-        <section className={styles.infoContainer}>
+        <section className={`${styles.infoContainer} ${!imageLeft ? styles.reversed : ''}`}>
             <div className={styles.infoContent}>
                 <h2 className={styles.title}>
-                    Leading healthcare providers
+                    {title}
                 </h2>
                 <p className={styles.description}>
-                    Sanovia provides progressive, and affordable healthcare, accessible on mobile and online 
-                    for everyone. To us, it's not just work. We take pride in the solutions we deliver.
+                    {description}
                 </p>
                 <button className={styles.learnMoreButton}>
                     Learn more
@@ -40,8 +45,8 @@ const Info: React.FC = () => {
             </div>
             <div className={styles.imageContainer}>
                 <img 
-                    src={healthImage} 
-                    alt="Healthcare Providers" 
+                    src={image} 
+                    alt={title} 
                     className={styles.infoImage}
                 />
             </div>

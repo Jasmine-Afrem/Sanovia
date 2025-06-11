@@ -18,13 +18,13 @@ const App: React.FC = () => {
         <Services />
         <Info
           title="Leading healthcare providers"
-          description="Sanovia provides progressive, and affordable healthcare..."
+          description="Sanovia provides progressive, and affordable healthcare, accessible on mobile and online for everyone. To us, it's not just work. We take pride in the solutions we deliver."
           image={healthImage}
           imageLeft={true}
         />
         <Info
           title="Download our mobile app"
-          description="Our dedicated patient engagement app and web portal allow you..."
+          description="Get the best healthcare experience right in your pocket! Our dedicated patient engagement app allows you to book appointments, track your health records, receive reminders, and connect with doctors - all in one place. Download now and take control of your healthcare journey."
           image={downloadAppImg}
           imageLeft={false}
         />
