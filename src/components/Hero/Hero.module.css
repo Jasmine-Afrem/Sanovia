@@ -1,84 +1,160 @@
 /* --- 1. Main Hero Layout --- */
 .heroContainer {
+    min-height: calc(85vh - 80px);
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 3rem;
-    padding: 2rem 8%; /* More horizontal padding for a spacious feel */
-    width: 100%;
-    margin: 0 auto;
-    /* This makes the hero fill the vertical screen space below the 80px navbar */
-    min-height: calc(100vh - 80px); 
-    background-color: #fdfdfd; /* A very light, almost white background */
+    padding: 4rem 5%;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
 }
 
-/* --- 2. Text Content & CTA --- */
-.textContainer {
-    flex: 1;
-    max-width: 600px;
-    /* Using a new, more subtle animation */
-    animation: fadeInUp 0.8s 0.2s ease-out forwards;
-    opacity: 0; /* Start hidden for animation */
+.heroContent {
+    flex: 0 1 45%;
+    max-width: 450px;
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: slideIn 1s ease-out forwards;
+    padding-right: 2rem;
 }
 
-.textContainer h1 {
-    /* Fluid typography: scales with the viewport but has min/max sizes */
-    font-size: clamp(2.5rem, 5vw, 3.75rem);
-    font-weight: 700;
-    /* A professional, dark color that isn't pure black */
-    color: #2D3748; 
-    line-height: 1.2;
-    margin-bottom: 1.5rem; /* 24px */
+.heroTitle {
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    letter-spacing: -0.02em;
 }
 
-.textContainer p {
-    font-size: 1.125rem; /* 18px */
-    /* A softer, more readable grey */
-    color: #718096;
-    line-height: 1.7;
-    margin-bottom: 2.5rem; /* 40px */
-    max-width: 500px; /* Keeps paragraph lines from getting too long */
+.heroTitle span {
+    color: var(--primary-red);
+    display: block;
+    margin-bottom: 0.25rem;
 }
 
-/* --- 3. The Modernized Button --- */
-.consultButton {
-    /* Using the red from your header for brand consistency! */
-    background-color: #DD2C2F; 
+.heroDescription {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    max-width: 400px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 0.8s ease-out 0.3s forwards;
+}
+
+.heroButtons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 0.8s ease-out 0.5s forwards;
+}
+
+.learnMoreButton {
+    background: linear-gradient(135deg, var(--primary-red) 0%, #c41e21 100%);
     color: white;
     border: none;
-    padding: 1rem 2.5rem; /* 16px 40px */
-    border-radius: 50px; /* A perfect pill shape */
-    font-size: 1.125rem; /* 18px */
-    font-weight: 700;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-size: 1.125rem;
+    font-weight: 600;
     cursor: pointer;
-    /* A subtle shadow using the button's own color for a "glow" effect */
-    box-shadow: 0 4px 14px rgba(221, 44, 47, 0.3);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(221, 44, 47, 0.3);
+    position: relative;
+    overflow: hidden;
 }
 
-.consultButton:hover {
-    transform: translateY(-3px); /* Lifts the button slightly */
-    box-shadow: 0 7px 20px rgba(221, 44, 47, 0.4);
+.learnMoreButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
 }
 
-/* --- 4. Image Container --- */
-.imageContainer {
+.learnMoreButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(221, 44, 47, 0.4);
+}
+
+.learnMoreButton:hover::before {
+    transform: translateX(100%);
+}
+
+.heroImageContainer {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Animate image in after the text for a nice sequence */
-    animation: fadeInUp 0.8s 0.4s ease-out forwards;
-    opacity: 0; /* Start hidden for animation */
+    position: relative;
+    opacity: 0;
+    transform: translateX(30px);
+    animation: slideIn 1s ease-out 0.2s forwards;
 }
 
-.imageContainer img {
+.heroImage {
     max-width: 100%;
     height: auto;
+    border-radius: 30px;
+    filter: drop-shadow(0 10px 25px rgba(221, 44, 47, 0.2));
+    transform: translateY(0);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: float 6s ease-in-out infinite;
 }
 
-/* --- 5. Modern Animation --- */
-@keyframes fadeInUp {
+.backgroundShape {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(45deg, rgba(221, 44, 47, 0.1), rgba(255, 59, 63, 0.05));
+    z-index: -1;
+    opacity: 0;
+}
+
+.shape1 {
+    width: 500px;
+    height: 500px;
+    top: -100px;
+    right: -100px;
+    animation: pulse 8s ease-in-out infinite;
+}
+
+.shape2 {
+    width: 300px;
+    height: 300px;
+    bottom: -50px;
+    left: -50px;
+    animation: pulse 8s ease-in-out infinite reverse;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideUp {
     from {
         opacity: 0;
         transform: translateY(20px);
@@ -89,29 +165,85 @@
     }
 }
 
-/* --- 6. Responsive Design --- */
-@media (max-width: 992px) {
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.7;
+    }
+}
+
+@media (max-width: 1024px) {
     .heroContainer {
-        flex-direction: column; /* Stack vertically on tablets and mobile */
-        text-align: center; /* Center-align text when stacked */
-        padding: 3rem 5%;
-        min-height: auto; /* Let content define height on mobile */
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 5%;
+        gap: 3rem;
     }
 
-    .textContainer {
-        order: 2; /* Text appears below the image */
+    .heroContent {
+        flex: 0 1 auto;
+        max-width: 600px;
+        margin: 0 auto 1rem;
+        padding-right: 0;
+    }
+
+    .heroTitle {
+        font-size: 2rem;
+    }
+
+    .heroTitle span {
+        display: inline;
+        margin-right: 0.5rem;
+    }
+
+    .heroDescription {
+        font-size: 0.9rem;
+        margin: 0 auto 1rem;
+        max-width: 500px;
+        line-height: 1.6;
+    }
+
+    .heroButtons {
+        justify-content: center;
+    }
+
+    .heroImageContainer {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .backgroundShape {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .heroContent {
         max-width: 100%;
+        padding: 0 1rem;
     }
 
-    .textContainer p {
-        margin-left: auto;
-        margin-right: auto;
+    .heroTitle {
+        font-size: 1.75rem;
     }
 
-    .imageContainer {
-        order: 1; /* Image appears on top */
-        margin-bottom: 2rem;
-        width: 80%; /* Don't let the image be full-width */
-        max-width: 450px;
+    .heroDescription {
+        font-size: 0.875rem;
+        max-width: 100%;
+        padding: 0 0.5rem;
     }
 }

@@ -1,0 +1,172 @@
+.infoContainer {
+    padding: 6rem 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(249, 249, 249, 0.9) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.infoContent {
+    flex: 1;
+    max-width: 600px;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.infoContent.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.title {
+    font-size: 3.5rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    position: relative;
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100px;
+    height: 4px;
+    background: #DD2C2F;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.8s cubic-bezier(0.5, 0, 0, 1) 0.3s;
+}
+
+.infoContent.visible .title::after {
+    transform: scaleX(1);
+}
+
+.description {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1) 0.4s;
+}
+
+.infoContent.visible .description {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.learnMoreButton {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    color: #DD2C2F;
+    background: transparent;
+    border: 2px solid #DD2C2F;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 
+        opacity 0.8s cubic-bezier(0.5, 0, 0, 1) 0.6s,
+        transform 0.8s cubic-bezier(0.5, 0, 0, 1) 0.6s,
+        color 0.3s ease,
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.infoContent.visible .learnMoreButton {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.learnMoreButton:hover {
+    color: white;
+    background: #DD2C2F;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(221, 44, 47, 0.3);
+}
+
+.imageContainer {
+    flex: 1;
+    position: relative;
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 1s cubic-bezier(0.5, 0, 0, 1) 0.2s;
+}
+
+.imageContainer.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.infoImage {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.1),
+        0 10px 20px rgba(0, 0, 0, 0.05);
+    transform: perspective(1000px) rotateY(0deg);
+    transition: transform 0.6s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.imageContainer:hover .infoImage {
+    transform: perspective(1000px) rotateY(-5deg) translateZ(50px);
+}
+
+@media (max-width: 1024px) {
+    .infoContainer {
+        padding: 4rem 5%;
+        flex-direction: column;
+        text-align: center;
+        gap: 3rem;
+    }
+
+    .infoContent {
+        max-width: 100%;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .title::after {
+        left: 50%;
+        transform: translateX(-50%) scaleX(0);
+    }
+
+    .infoContent.visible .title::after {
+        transform: translateX(-50%) scaleX(1);
+    }
+
+    .imageContainer {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .infoContainer {
+        padding: 3rem 5%;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .description {
+        font-size: 1rem;
+    }
+} 

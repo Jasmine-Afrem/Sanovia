@@ -1,77 +1,155 @@
 /* --- 1. Main Section Container --- */
 .servicesContainer {
-    padding: 6rem 8%;
+    padding: 5rem 10%;
     text-align: center;
-    background-color: #f9f9f9; /* A light grey to separate it from white sections */
+    background: #ffffff;
 }
 
 /* --- 2. Section Header --- */
 .servicesContainer h2 {
-    font-size: 2.5rem; /* 40px */
-    font-weight: 700;
-    color: #2D3748;
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 1rem;
 }
 
 .divider {
-    width: 56px;
+    width: 60px;
     height: 3px;
-    background-color: #DD2C2F; /* The brand red! */
+    background: #DD2C2F;
+    margin: 1rem auto;
     border: none;
-    border-radius: 3px;
-    margin: 1.5rem auto;
 }
 
 .subHeading {
     max-width: 800px;
-    margin: 0 auto 4rem auto;
-    font-size: 1.125rem; /* 18px */
-    line-height: 1.7;
-    color: #718096; /* Consistent soft grey */
+    margin: 0 auto 3rem;
+    color: #666;
+    line-height: 1.6;
 }
 
-/* --- 3. The Grid of Cards --- */
+/* Grid Layout */
 .servicesGrid {
     display: grid;
-    /* This creates a responsive grid that shows 1, 2, or 3 columns based on screen width */
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 2.5rem; /* 40px */
-    margin-bottom: 4rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+/* Service Cards */
+.serviceCard {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: 
+        opacity 1s cubic-bezier(0.5, 0, 0, 1),
+        transform 1s cubic-bezier(0.5, 0, 0, 1);
+    will-change: opacity, transform;
+}
+
+.serviceCard.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.serviceCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.serviceIcon {
+    font-size: 2.5rem;
+    color: #DD2C2F;
+    margin-bottom: 1rem;
+}
+
+.serviceTitle {
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.serviceDescription {
+    color: #666;
+    line-height: 1.5;
 }
 
 /* --- 4. The "Learn More" Button --- */
-/* We use the exact same style as our InfoSection for perfect consistency */
 .learnMoreButton {
-    background-color: transparent;
-    color: #DD2C2F;
-    border: 2px solid #DD2C2F;
-    padding: 0.8rem 2rem;
-    border-radius: 8px;
+    background: #DD2C2F;
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 500;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    margin-top: 2rem;
+    transition: all 0.3s ease;
 }
 
 .learnMoreButton:hover {
-    background-color: #DD2C2F;
-    color: #ffffff;
     transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(221, 44, 47, 0.2);
+}
+
+/* Fade In Animation */
+.fadeIn {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+    animation-play-state: paused;
+    will-change: opacity, transform;
+}
+
+.fadeIn.visible {
+    animation-play-state: running;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* --- 5. Responsiveness --- */
+@media (max-width: 1024px) {
+    .servicesGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
     .servicesContainer {
-        padding: 4rem 5%;
+        padding: 3rem 5%;
     }
 
     .servicesContainer h2 {
         font-size: 2rem;
     }
 
-    .subHeading {
-        font-size: 1rem;
-    }
     .servicesGrid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* Intersection Observer Styles */
+@supports (animation-timeline: view()) {
+    .fadeIn {
+        animation-timeline: view();
+        animation-range: entry 20% cover 50%;
     }
 }

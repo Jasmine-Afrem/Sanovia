@@ -2,8 +2,9 @@ import React from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import Services from './components/Services/Services';
-import InfoSection from './components/InfoSection/InfoSection';
+import Info from './components/Info/Info';
 import Footer from './components/Footer/Footer';
+import './styles/effects.css';
 
 import healthImage from './assets/healthImage.jpeg';
 import downloadAppImg from './assets/downloadAppImg.png';
@@ -13,24 +14,22 @@ const App: React.FC = () => {
     <div className="App">
       <Navbar />
       <main>
-        <Hero/>
-        <Services/>
-        <InfoSection
+        <Hero />
+        <Services />
+        <Info
           title="Leading healthcare providers"
           description="Sanovia provides progressive, and affordable healthcare..."
-          imageUrl={healthImage}
-          imageOnLeft={true}
-          buttonText="Learn more"
+          image={healthImage}
+          imageLeft={true}
         />
-        <InfoSection
+        <Info
           title="Download our mobile app"
           description="Our dedicated patient engagement app and web portal allow you..."
-          imageUrl={downloadAppImg}
-          imageOnLeft={false}
-          buttonText="Download"
+          image={downloadAppImg}
+          imageLeft={false}
         />
       </main>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

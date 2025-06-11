@@ -1,0 +1,59 @@
+/* Base reveal class */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: none;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Card specific animations */
+.serviceCard {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: none;
+}
+
+.serviceCard.active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: 
+        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.3s ease-in-out;
+}
+
+/* Hover effects */
+.card-shadow {
+    box-shadow: 
+        0 10px 30px -5px rgba(0, 0, 0, 0.1),
+        0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card-shadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 20px 40px -5px rgba(0, 0, 0, 0.15),
+        0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Button effects */
+.btn-depth {
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-depth:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.12),
+        0 4px 8px rgba(0, 0, 0, 0.06);
+}
+
+.btn-depth:active {
+    transform: translateY(1px);
+} 

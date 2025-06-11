@@ -1,0 +1,84 @@
+:root {
+    /* Colors */
+    --primary-red: #dd2c2f;
+    --primary-red-light: #ff3b3f;
+    --primary-red-dark: #c41e21;
+    --text-color: #1F1534;
+    --text-medium: #7D7987;
+    --text-light: #9B9B9B;
+    --white: #FFFFFF;
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F8F8F8;
+
+    /* Shadows */
+    --shadow-soft: rgba(0, 0, 0, 0.03);
+    --shadow-medium: rgba(0, 0, 0, 0.06);
+    --shadow-colored: rgba(221, 44, 47, 0.15);
+
+    /* Gradients */
+    --gradient-red: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-red-dark) 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Mulish', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--bg-primary);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+button {
+    font-family: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Utility Classes */
+.container {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+/* Animation Classes */
+.scrollReveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+    :root {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 1440px) {
+    :root {
+        font-size: 18px;
+    }
+}
