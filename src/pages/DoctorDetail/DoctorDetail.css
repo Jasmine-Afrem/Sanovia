@@ -1,0 +1,329 @@
+.doctorDetailPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: var(--section-padding) 1.5rem;
+    background-color: var(--bg-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.bgShape {
+    position: absolute;
+    top: 5%;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: linear-gradient(135deg, rgba(221, 44, 47, 0.05), rgba(255, 255, 255, 0));
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.doctorDetailPage .container {
+    max-width: 1280px; 
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    z-index: 1;
+}
+
+.backButton {
+    align-self: flex-start; 
+    margin-bottom: 2rem; 
+    background: var(--white);
+    border: 1px solid #eee;
+    color: var(--text-medium);
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.backButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    color: var(--text-color);
+}
+
+.detailHeader {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: var(--white);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    padding-top: 6rem;
+    position: relative;
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.08);
+}
+
+.detailPhoto {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 6px solid var(--white);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.headerText h1 {
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    margin: 0 0 0.5rem 0;
+}
+
+.headerText p {
+    font-size: 1.1rem;
+    color: var(--text-medium);
+    margin: 0;
+}
+
+.detailGrid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) 1fr;
+    gap: 4rem; 
+    margin-top: 2rem;
+    align-items: baseline;
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.contentSection {
+    text-align: left;
+}
+
+.contentSection h2 {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.contentSection h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translateX(0);
+    width: 50px;
+    height: 3px;
+    background-color: var(--primary-red);
+    border-radius: 2px;
+}
+
+.contentSection p {
+    margin: 0;
+    line-height: 1.8;
+}
+
+.servicesList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; 
+    flex-direction: column; 
+    gap: 1.5rem;
+}
+
+.serviceItem {
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start;
+    background-color: var(--white); 
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.03); 
+    border: 1px solid #f5f5f5;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.serviceItem:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+}
+
+.serviceName {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 0.25rem;
+}
+
+.serviceDesc {
+    font-size: 0.9rem;
+    color: var(--text-medium);
+    padding-right: 1rem;
+}
+
+.priceTag {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--primary-red);
+    white-space: nowrap;
+}
+
+.infoCard {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+}
+
+.infoCard h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 1.25rem;
+}
+
+.infoBlock {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.infoIcon {
+    font-size: 1.25rem;
+    color: var(--primary-red);
+    margin-top: 0.25rem;
+    flex-shrink: 0;
+}
+
+.infoBlock div {
+    display: flex;
+    flex-direction: column;
+}
+
+.infoBlock strong {
+    font-size: 0.85rem;
+    color: var(--text-medium);
+    margin-bottom: 0.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.mapPlaceholder {
+    width: 100%;
+    height: 180px;
+    background-image: linear-gradient(45deg, #f9f9f9, #f0f0f0);
+    border-radius: var(--radius-sm);
+    display: grid;
+    place-content: center;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    border: 1px solid #eee;
+}
+
+.infoCard .learnMoreButton {
+    width: 100%;
+}
+
+.specialtyList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.specialtyList li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--bg-secondary);
+    color: var(--text-medium);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+}
+
+.specialtyList li svg {
+    color: var(--primary-red);
+}
+
+.educationList {
+    list-style: none;
+    padding: 1rem 0 0 0;
+    margin-top: 1rem;
+    border-top: 1px solid #f0f0f0;
+}
+
+.educationList li {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-medium);
+}
+
+@media (max-width: 992px) {
+    .detailGrid {
+        grid-template-columns: 1fr;
+    }
+    .sidebar {
+        grid-row-start: 2;
+    }
+}
+
+.learnMoreButton {
+    background: var(--gradient-red, linear-gradient(135deg, var(--primary-red) 0%, #c41e21 100%));
+    color: white;
+    border: none;
+    padding: 0.75rem 1rem;
+    width: auto;
+    border-radius: 50px;
+    font-size: 1.125rem;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.learnMoreButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.learnMoreButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px var(--primary-red-light, #ff3b3f);
+}
+
+.learnMoreButton:hover::before {
+    transform: translateX(100%);
+}

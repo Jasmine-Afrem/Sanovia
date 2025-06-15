@@ -21,7 +21,7 @@ const Hero: React.FC = () => {
                     Experience the future of healthcare with Sanovia. We combine cutting-edge technology with compassionate care to provide you with the best medical services. Our team of expert healthcare professionals is dedicated to your well-being, offering personalized solutions that fit your unique needs.
                 </p>
                 <div className={`${styles.heroButtons} reveal`}>
-                    <button className={`${styles.learnMoreButton} btn-depth`}>
+                    <button className={`learnMoreButton btn-depth`}>
                         Schedule Consultation
                     </button>
                 </div>

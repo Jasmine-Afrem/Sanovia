@@ -243,3 +243,31 @@
     color: rgba(255, 255, 255, 0.9);
     margin-top: 2rem;
 }
+
+.mapSection {
+    grid-column: 1 / -1;
+    margin-top: 4rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mapSection h3 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.mapSection p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .mapSection {
+        margin-top: 3rem;
+        padding: 1.5rem;
+    }
+}

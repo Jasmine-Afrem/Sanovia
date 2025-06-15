@@ -9,12 +9,10 @@
     overflow: hidden;
 }
 
-/* Leading section: content on left, image on right */
 .infoContainer {
     flex-direction: row;
 }
 
-/* Download section: content on right, image on left */
 .infoContainer.download {
     flex-direction: row-reverse;
 }
@@ -38,7 +36,7 @@
     max-width: 600px;
     opacity: 0;
     transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: all 0.8s cubic-bezier(0.42, 4, 0.36, 1);
     position: relative;
     z-index: 1;
     padding: 2rem;
@@ -191,7 +189,6 @@
     transform: translate3d(0, -10px, 0);
 }
 
-/* Download section specific styles */
 .download .imageContainer::before {
     border-color: rgba(221, 44, 47, 0.1);
 }
